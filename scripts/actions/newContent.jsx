@@ -6,9 +6,10 @@ export const addNewContentActionCreator = (newContent) => {
   console.log('actions.newContent#addNewContent() newContent: '
               + JSON.stringify(newContent));
 
+  // return actual action (some data in memory):
   return {
-    type: "NEW_CONTENT_CREATED",
-    payload: "Some more new-ish fresh content :)"
+    type: "NEW_CONTENT_CREATED",    // an action ID so to speak
+    payload: newContent             // data associated with this action?
   };
 
 };

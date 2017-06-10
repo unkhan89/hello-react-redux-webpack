@@ -1,20 +1,15 @@
-/**
- * A react component that's been extended into a Redux container.
- *
- */
 
 import React from 'react';
 
-// Used to create a Redux Container (a React Component plus a
-// function for a Redux Provider to inject data)
+// Used to create a Redux Container (a React Component plus functions for Redux to use)
 import {connect} from 'react-redux';
 
-//
+// Used to bind and Action Creator to this:
 import {bindActionCreators} from 'redux';
-//
+// An action creator that this contianer will use:
 import {addNewContentActionCreator} from '../actions/newContent.jsx';
 
-
+import NewContent from './new-content.jsx';
 
 class Content extends React.Component {
 
@@ -27,22 +22,22 @@ class Content extends React.Component {
     console.log('> props: ' + JSON.stringify(this.props));
     console.log('> state: ' + JSON.stringify(this.state));
     return(
-      <div id="ContentRedux">
+      <div id="Content">
         <h3>Hello React-Redux</h3>
         <p>{this.props.contentProp}</p>
         <button onClick={ () => this.props.addNewContent(new Date().getTime()) } >
           Add fresh content
         </button>
+        <NewContent />
       </div>
     );
   }
 }
 
-// A function for accepting data (via 'state', should be called 'propValue'
-// or 'providerData') to be injected into the React Component as a property.
-// Redux Provider will take data in store (recall its populated by reducers)
-// and inject into this contianer via this function,
-// which will inject into the React component inside this Container
+// Function called by Redux for ingecting data into component as a prop.
+// 'state' param is arbitrary, should be called 'reducerOutput',
+// 'contentData' is mapped in allReducers (like combineReducers({contentData : ContentReducer, ...}))
+// 'contentProp' is the prop attribute this Component will look at for the incoming data
 //
 function mapStateToProps(state) {
   console.log('Content.mapStateToProps() state: ' + JSON.stringify(state));
@@ -52,6 +47,9 @@ function mapStateToProps(state) {
 }
 
 
+// A function that will be use to bind an action creator to a function of the contianer
+// (as a property)
+//
 function matchDispatchToProps(dispatch) {
   console.log('Content.matchDispatchToProps() dispath: ' + JSON.stringify(dispatch));
   return bindActionCreators({
@@ -62,6 +60,6 @@ function matchDispatchToProps(dispatch) {
 
 
 // Export a Redux Container (which is basically a React Component
-// with a function that allows injection of data as a component prop)
+// with functions that bind it to Redux)
 //
 export default connect(mapStateToProps, matchDispatchToProps)(Content);

@@ -22,25 +22,23 @@ import $ from 'jquery';
 
 import Content from './containers/content.jsx';
 
-// Recall Redux Reducers are 'data gatherers that put data into a Redux Store'
-// points to directory that contains an index.js which references all reducers
-// reducers take data from a source (user input, API, etc.) and feed into Redux Store
+// Recall Redux Reducers are 'data gatherers that take data from an action put data into a Redux Store'.
+// Following points to directory that contains an index.js which references all reducers
 import allReducers from './reducers';
 
-// import a single function 'createStore' directly callable
-// will be used to create Redux store that holds states of all components
+// import a single function 'createStore' directly callable,
+// will be used to create Redux Store that holds state/data of all components
 import {createStore} from 'redux';
-
-// Redux Provider provides data to Redux Container
-import {Provider} from 'react-redux';
-
-console.log('Done with imports');
-
 const store = createStore(allReducers);
 
-// Reduxt Provider is the root element that's passed to render()
+// Redux Provider provides data to Redux Container from a store
+import {Provider} from 'react-redux';
+
+
+// Redux Provider is the root element that's passed to render()
 // The Redux store is passed as an attribute to the Provider
-// Inside the provider is our app's main Container
+// Inside the provider is our app's main Container.
+// Provider can have only 1 child element.
 //
 ReactDOM.render(
   <Provider store={store}>

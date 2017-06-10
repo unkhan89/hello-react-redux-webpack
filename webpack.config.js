@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = {
 
   // the main js file that starts your application (not html page that user loads)
-  entry: path.join(__dirname, 'scripts', 'index.js'),
+  entry: path.join(__dirname, 'scripts', 'index.jsx'),
 
   output: {
     path: path.join(__dirname, 'build'),

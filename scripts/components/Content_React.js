@@ -1,3 +1,8 @@
+/**
+ *  REACT ONLY, for redux, ContentX component
+ *
+ */
+
 
 import React from 'react';
 import ReactDOM from 'react-dom';
